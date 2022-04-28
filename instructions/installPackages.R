@@ -15,8 +15,9 @@ for (i in 1:length(pk1)){
 
 installBiocifnot <- function(pckgName){
   if (!(require(pckgName, character.only = TRUE))) {
-    source("http://Bioconductor.org/biocLite.R")
-    biocLite(pckgName)
+    if (!require("BiocManager", quietly = TRUE))
+      install.packages("BiocManager")
+    BiocManager::install(pckgName)
     require(pckgName, character.only = TRUE)
   }
 }
@@ -25,3 +26,4 @@ installBiocifnot("impute")
 
 devtools::install_github("vqv/ggbiplot")
 devtools::install_github("nik01010/dashboardthemes")
+
