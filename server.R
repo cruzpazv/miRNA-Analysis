@@ -1,8 +1,18 @@
+############################################################
+###########                                         ########
+###########            Analysis miRNA               ########
+###########       Design by Victoria M. Cruz        ########
+###########             UEB - VHIR                  ########
+###########                2022                     ########
+###########                                         ########
+############################################################
+
+
 # server.R
 
 options(shiny.maxRequestSize = 100*1024^2)
 
-source("installPackages.R")
+source("helpers.R")
 print(sessionInfo())
 
 shinyServer(function(input, output,session) {
