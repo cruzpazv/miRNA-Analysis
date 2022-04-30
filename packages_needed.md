@@ -12,6 +12,3 @@
 # library(dashboardthemes) #devtools::install_github("nik01010/dashboardthemes")
 # library(shinyBS)
 # library(markdown)  
-
-# library(shinyBS)
-# library(plotly)

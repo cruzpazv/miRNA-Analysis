@@ -1,22 +1,20 @@
+############################################################
+###########                                         ########
+###########           Shiny Enrichment              ########
+###########       Design by Victoria M. Cruz        ########
+###########             UEB - VHIR                  ########
+###########                2022                     ########
+###########                                         ########
+############################################################
 
 datasetInput <- reactive({
-
+  
   if (input$example_data == "yes") {
     data <- read_csv("example_data/archivo.csv")
-    print(data)
   }
-  
- else if (input$example_data == "umd") {
-   
-    infile <- input$data
-    
-  if (is.null(infile)){
-      return(NULL)
-      }
-  
-  else {
-    data2 <- read_csv(infile$datapath, input$header)
-    print(data2)}
+  else if (input$example_data == "umd") {
+    req(input$data)
+    data <- read.csv(input$data$datapath, sep = input$sep2, dec = input$dec2)
   }
 })
 

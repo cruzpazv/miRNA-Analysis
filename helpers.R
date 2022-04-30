@@ -1,17 +1,7 @@
-############################################################
-###########                                         ########
-###########            Analysis miRNA               ########
-###########       Design by Victoria M. Cruz        ########
-###########             UEB - VHIR                  ########
-###########                2022                     ########
-###########                                         ########
-############################################################
-
-
 ## ==================================================================================== ##
 # HELPERS
 ## ==================================================================================== ##
-  
+
 library(shiny) 
 library(DT)
 library(shinydashboard)
@@ -21,8 +11,15 @@ library(dashboardthemes) #devtools::install_github("nik01010/dashboardthemes")
 library(shinyBS)
 library(markdown)
 
+# new packages
+library(enrichR)
+library(shinyalert)
+library(shinybusy)
+library(readr)
+library(tidyr)
+library(ggplot2)
+
 # library(reshape2)
-# library(ggplot2)
 # library(impute)
 # library(gplots)
 # #library(rjson)
@@ -33,13 +30,13 @@ library(markdown)
 # library(glmnet)
 # library(ggvis)
 # library(glue)
-# library(tidyr)
 # library(limma)
 # library(mixOmics)
 # library(ggthemes)
 # library(dplyr)
 # library(ggrepel)
 # library(ggfortify)
-# library(readr)
 # library(broom)
 # library(readxl)
+
+

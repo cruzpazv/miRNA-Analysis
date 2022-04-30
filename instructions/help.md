@@ -1,13 +1,16 @@
-Principal Component Analysis (PCA) is a statistical procedure that uses an orthogonal transformation to convert a set of observations of possibly correlated variables into a set of values of linearly uncorrelated variables called principal components. The first principal component has the largest possible variance, and each succeeding component in turn has the highest variance possible. This web tool performs internally a PCA of a dataset uploaded by the user, and plots two components, colouring the samples according to the variables selected.
+Enrichment analysis is a computational method for inferring knowledge about an input gene set by comparing it to annotated gene sets representing prior biological knowledge. Enrichment analysis checks whether an input set of genes significantly overlaps with annotated gene sets. [More information.](https://pubmed.ncbi.nlm.nih.gov/19033363/)
 
-You need to perform this steps to have a nice PCA plot :) :
+Enrichment Analysis made with `enrichR` package, check the website for more information: [Enrichr web site](https://maayanlab.cloud/Enrichr/).
+
+You need to perform this steps to have obtain good results :) :
 
               
-  - Upload your files: We need two files to perform PCA with the web tool:
-      - Data file: Load your datamatrix of interest in .csv or .txt format, knowing in advance how the values and decimal numbers are separated. You can easily do it with any spreadsheet. Be sure you put the samples in columns and the variables of study in rows. Use the first column to put the variables names or leave it in blank if you want  (since this column is not used). 
-      - Targets file: The targets is a file where you defines the levels of each variable under study. The application will use this file to colour the samples in the plot. Upload a .csv or .txt file  with your variables and their levels in columns. Please use the first column to put the name of the samples (in the same order that thei are in the columns of the data file) to identify them in the plot. 
+  - Upload your file:
+      - Data file: Load your data of interest in .csv or .txt format. This must have one column with the genes of interest in Entrez gene symbol or HGNC gene symbol. You can select later the right column, there is not need to have a certain column order. 
+      
                 
-  - We need to configure some parameters before run the application:
-      - Select the variable to study: Select one of the variables listed in the dropdown menu. The variable will be used to colour the samples in the plot. These variables are automatically read from the targets file.
-      - Select the Principal Components to plot: Here you can choose two principal components calculated to plot. Usually the first and the second component, that accounts for the majority of the variance in the data are ploted
-      - Please enter the title plot: Here you have to put a word or few words to complete the sentence: Principal Component Analysis of.
+  - Parameters to edit:
+      - Select the database: Select one of the predeterminated databases given (7) or search for a different one (193 in total).
+      - Select the numbers of terms: You can choose how many terms do you want in your plot here (from 5 to 30).
+      - Select the numbers of characters: Here you can set the limit of characters to keep in the term description on the plot (from 25 to 120).
+      - Title plot: Here you could put a word or few words to complete the sentence. If there is empty, the title will be by default.

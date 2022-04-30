@@ -2,6 +2,8 @@
 
 Creators & mantainers of Gene Set Analyst: **Àlex Sánchez Pla** and **Ricardo Gonzalo Sanz**.
 
+Creator of the Enrichment interface: **Victoria M. Cruz**
+
 ### <span style="color:#4d4d4d">Àlex Sánchez Pla</span> 
 
 **PhD in Bioinformatics**
@@ -29,3 +31,18 @@ Software development
 Statistical analysis 
 
 Software development
+
+### <span style="color:#4d4d4d">Victoria María Cruz de Paz</span> 
+
+**Master's student in Bioinformatics and Biostatistics (UB-UOC)**
+
+**Health Engineer a major in Bioinformatics (UMA)**
+
+**e-mail:** cruzpazv@gmail.com
+
+#### Research areas:
+
+Statistical analysis 
+
+Software development
+
