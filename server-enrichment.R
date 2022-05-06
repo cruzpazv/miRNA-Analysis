@@ -114,7 +114,7 @@ observe({
   req(datasetInput())
   # update selectInput options
   if(input$column_gene == "" || !(input$column_gene %in% colnames(datasetInput())))
-    insert_values_selectInput("AA","column_gene")
+    insert_values_selectInput("Gene","column_gene")
   # update selectInput options enrich database
   if (input$dbs_predetermined == "no") {
     updateSelectizeInput(session, "dbs_all", choices = listEnrichrDbs()$libraryName,
