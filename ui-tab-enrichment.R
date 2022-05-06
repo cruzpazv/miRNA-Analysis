@@ -13,13 +13,13 @@ tabPanel( # ENRICHMENT TAB
     sidebarPanel(
       width = 3,
       # SELECT COLUMN THAT CONTAINS GENE ID
-      selectInput("column_gene", "Select column for Gene ID (HGNC):", ""),
+      selectInput("column_gene", "Select column for Gene ID (HGNC or Entrez):", ""),
       hr(),
       # SELECT DB
       radioButtons("dbs_predetermined", "Do you want to use the predetermined databases?",
                    choices = c("Yes" = 'yes',
                                "No, select a different one" = 'no'),
-                   selected = 'no'),
+                   selected = 'yes'),
       conditionalPanel(condition = ("input.dbs_predetermined == 'yes'"),
                        selectInput("dbs_predselected", "Select a predeterminated database:", c("GO_Molecular_Function_2021", "GO_Cellular_Component_2021", 
                                                                              "GO_Biological_Process_2021", "OMIM_Disease", 

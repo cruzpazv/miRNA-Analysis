@@ -54,10 +54,19 @@ columns_are_valid <- function(data_csv){
   if(ncol(data_csv)<1){
     error_title <- "Not enough columns."
     error_message <- "Please, check that the file has at least one column."
-    
   }else{
-    if(!all(is.character(data_csv[,input$column_gene]))){
-      ## GENE ERRORS: must be character
+    # if there is column selected
+    if(input$column_gene == ""){
+      error_title <- "No Gene column found."
+      error_message <- "Please, select the column for Gene ID."
+    }
+    # if the name is not in the colnames
+    else if(!(input$column_gene %in% colnames(data_csv))){
+      error_title <- "Undefined column selected."
+      error_message <- "Please, check if the separator and the columnd are correct."
+    }
+    ## GENE ERRORS: must be character
+    else if(!all(is.character(data_csv[,input$column_gene]))){
       error_title <- "Error in column for Gene."
       error_message <- "Please, the data format for Gene must be characters."
     }
@@ -73,19 +82,26 @@ columns_are_valid <- function(data_csv){
 }
 
 # FUNCTION to update de values of selectInput for columns names
-insert_values_selectInput <- function(columnname, idSelectInput, columnByDefault){
+insert_values_selectInput <- function(columnname, idSelectInput){
+  col_num <- ""
   # if the exact name is found
   if(length(which(colnames(datasetInput())==columnname))>0){ 
     col_num <- which(colnames(datasetInput())==columnname)
-    
-  }else if(sum(grepl(columnname, names(datasetInput()), ignore.case = TRUE))>0){ # if similar name is found 
+  }
+  # if similar name is found 
+  else if(sum(grepl(columnname, names(datasetInput()), ignore.case = TRUE))>0){ 
     col_num <- which(grepl(columnname, names(datasetInput()), ignore.case = TRUE))[[1]]
-    
-  }else{ col_num <- columnByDefault}
+  }
   
-  # update selectInput choices
-  updateSelectInput(session, idSelectInput, choices = colnames(datasetInput()),
-                    selected = colnames(datasetInput())[col_num])
+  if(col_num == ""){
+    # if there isn't exact or similar name, don't select any
+    updateSelectInput(session, idSelectInput, choices = colnames(datasetInput()),
+                      selected = "")
+  }else{
+    # update selectInput choices if name found
+    updateSelectInput(session, idSelectInput, choices = colnames(datasetInput()),
+                      selected = colnames(datasetInput())[col_num])
+  }
 }
 
 #################### ENRICHMENT SERVER #################
@@ -97,7 +113,8 @@ RV <- reactiveValues(dbs_selected = character(), plot_title = character())
 observe({
   req(datasetInput())
   # update selectInput options
-  insert_values_selectInput("Gene.ID","column_gene", 1)
+  if(input$column_gene == "" || !(input$column_gene %in% colnames(datasetInput())))
+    insert_values_selectInput("AA","column_gene")
   # update selectInput options enrich database
   if (input$dbs_predetermined == "no") {
     updateSelectizeInput(session, "dbs_all", choices = listEnrichrDbs()$libraryName,

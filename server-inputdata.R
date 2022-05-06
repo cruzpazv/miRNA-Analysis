@@ -10,7 +10,7 @@
 datasetInput <- reactive({
   
   if (input$example_data == "yes") {
-    data <- read_csv("example_data/archivo.csv")
+    data <- read.csv("example_data/archivo.csv", row.names = NULL, sep = ";")
   }
   else if (input$example_data == "umd") {
     req(input$data)
