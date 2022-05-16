@@ -17,13 +17,13 @@ get_enrichment <- function(df_gene){
   #' check names in: https://maayanlab.cloud/Enrichr/#libraries
   if (input$dbs_predetermined == "yes") {
     # validate if there is any db selected
-    validate(
+    shiny::validate(
       need(input$dbs_predselected != "", "Please, select any of the predeterminated databases available.")
     )
     RV$dbs_selected <- input$dbs_predselected
   }else if(input$dbs_predetermined == "no") {
     # validate if there is any db selected
-    validate(
+    shiny::validate(
       need(input$dbs_all != "", "Please, select any of the different databases available.")
     )
     RV$dbs_selected <- input$dbs_all
@@ -67,8 +67,8 @@ columns_are_valid <- function(data_csv){
     }
     ## GENE ERRORS: must be character
     else if(!all(is.character(data_csv[,input$column_gene]))){
-      error_title <- "Error in column for Gene."
-      error_message <- "Please, the data format for Gene must be characters."
+     error_title <- "Error in column for Gene."
+     error_message <- "Please, the data format for Gene must be characters."
     }
   }
   
@@ -152,7 +152,7 @@ output$enrich_table <- DT::renderDataTable({
 # RENDER plot enrich
 output$enrich_plot <- renderPlot({
   if(input$example_data == "umd"){
-    validate(
+    shiny::validate(
       need(input$data, "You have selected upload your own data but there is not data upload. Please, check the Input Data tab.")
     )
   }

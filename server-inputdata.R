@@ -10,11 +10,11 @@
 datasetInput <- reactive({
   
   if (input$example_data == "yes") {
-    data <- read.csv("example_data/archivo.csv", row.names = NULL, sep = ";")
+    data <- as.data.frame(read.csv("example_data/archivo.csv", row.names = NULL))
   }
   else if (input$example_data == "umd") {
     req(input$data)
-    data <- read.csv(input$data$datapath, sep = input$sep2, dec = input$dec2)
+    data <- as.data.frame(read.csv(input$data$datapath, sep = input$sep2, dec = input$dec2))
   }
 })
 
