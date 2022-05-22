@@ -13,7 +13,7 @@ tabPanel( # ENRICHMENT TAB
     sidebarPanel(
       width = 3,
       # SELECT COLUMN THAT CONTAINS GENE ID
-      selectInput("column_gene", "Select column for Gene ID (HGNC or Entrez):", ""),
+      selectInput("column_gene", "Select column for Gene Symbol (HGNC or Entrez):", ""),
       hr(),
       # SELECT DB
       radioButtons("dbs_predetermined", "Do you want to use the predetermined databases?",
