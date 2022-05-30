@@ -150,23 +150,26 @@ output$enrich_table <- DT::renderDataTable({
 })
 
 # RENDER plot enrich
-output$enrich_plot <- renderPlot({
-  if(input$example_data == "umd"){
-    shiny::validate(
-      need(input$data, "You have selected upload your own data but there is not data upload. Please, check the Input Data tab.")
-    )
-  }
-  req(data_enrichment())
-  if(input$plot_title != ""){
-    RV$plot_title <- input$plot_title
-  }else{
-    RV$plot_title <- paste("Enrichment analysys with database",RV$dbs_selected)
-  }
-  plotEnrich(data_enrichment()[[RV$dbs_selected]], 
-             showTerms = input$num_terms, numChar = input$num_char, 
-             y = "Count", orderBy = "P.value", 
-             title = RV$plot_title)
+observe({
+  output$enrich_plot <- renderPlot({
+    if(input$example_data == "umd"){
+      shiny::validate(
+        need(input$data, "You have selected upload your own data but there is not data upload. Please, check the Input Data tab.")
+      )
+    }
+    req(data_enrichment())
+    if(input$plot_title != ""){
+      RV$plot_title <- input$plot_title
+    }else{
+      RV$plot_title <- paste("Enrichment analysys with database",RV$dbs_selected)
+    }
+    plotEnrich(data_enrichment()[[RV$dbs_selected]], 
+               showTerms = input$num_terms, numChar = input$num_char, 
+               y = "Count", orderBy = "P.value", 
+               title = RV$plot_title)
+  }, width =  input$plot_width , height = input$plot_height, res = input$plot_res)
 })
+
 
 # REACTIVE save name of file selected
 current_fname <- reactive({
@@ -196,7 +199,7 @@ output$download_enrichment <- downloadHandler(
                              showTerms = input$num_terms, numChar = input$num_char, 
                              y = "Count", orderBy = "P.value", 
                              title = RV$plot_title), 
-           device = "png", height = 8 , width = 12)
+           device = "png", height = input$plot_height , width = input$plot_width, units = "px", dpi = input$plot_res)
     remove_modal_spinner()
     #create the zip file
     zip(file, c(paste0(current_fname(), '_enrichment.png'),

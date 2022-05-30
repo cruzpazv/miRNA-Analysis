@@ -21,10 +21,12 @@ tabPanel( # ENRICHMENT TAB
                                "No, select a different one" = 'no'),
                    selected = 'yes'),
       conditionalPanel(condition = ("input.dbs_predetermined == 'yes'"),
-                       selectInput("dbs_predselected", "Select a predeterminated database:", c("GO_Molecular_Function_2021", "GO_Cellular_Component_2021", 
-                                                                             "GO_Biological_Process_2021", "OMIM_Disease", 
-                                                                             "GWAS_Catalog_2019", "KEGG_2021_Human","miRTarBase_2017"), "GO_Molecular_Function_2021")),
-      
+                       selectInput("dbs_predselected", "Select a predeterminated database:", c("GO_Molecular_Function_2021", 
+                                                                                               "GO_Cellular_Component_2021", 
+                                                                                               "GO_Biological_Process_2021", 
+                                                                                               "GWAS_Catalog_2019", "KEGG_2021_Human",
+                                                                                               "miRTarBase_2017"), 
+                                   "GO_Molecular_Function_2021")),
       conditionalPanel(condition = ("input.dbs_predetermined == 'no'"),
                        selectizeInput("dbs_all", "Select a different database:", "", "", multiple = FALSE)),
       hr(),
@@ -34,6 +36,12 @@ tabPanel( # ENRICHMENT TAB
       sliderInput("num_char", "Number of characters to keep in the term description:", 25, 120,  40),
       # name of the plot
       textInput("plot_title", "Title plot (if empty, will be one by default):", ""),
+      # width of the plot
+      numericInput("plot_width", "Width (pixel):", 1000),
+      # height of the plot
+      numericInput("plot_height", "Height (pixel):", 800),
+      # width of the plot
+      numericInput("plot_res", "Resolution:", 110),
       uiOutput("buttondown_enrichment")
     ),
     mainPanel(
