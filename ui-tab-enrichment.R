@@ -36,11 +36,12 @@ tabPanel( # ENRICHMENT TAB
       sliderInput("num_char", "Number of characters to keep in the term description:", 25, 120,  40),
       # name of the plot
       textInput("plot_title", "Title plot (if empty, will be one by default):", ""),
-      # width of the plot
-      numericInput("plot_width", "Width (pixel):", 1000),
-      # height of the plot
-      numericInput("plot_height", "Height (pixel):", 800),
-      # width of the plot
+      # width and height for plot
+      fluidRow(
+        column(6, numericInput("plot_width", "Width (pixel):", 1000)),
+        column(6, numericInput("plot_height", "Height (pixel):", 800))
+      ),
+      # res of the plot
       numericInput("plot_res", "Resolution:", 110),
       uiOutput("buttondown_enrichment")
     ),
